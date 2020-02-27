@@ -8,11 +8,12 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session      = require('express-session')
+const MongoStore   = require('connect-mongo')(session);
+const app_name     = require('./package.json').name;
+const debug        = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
-const app_name = require('./package.json').name;
-const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
-
-const app = express();
+const app          = express();
 
 // Set up the database
 require('./configs/db.config');
@@ -30,7 +31,23 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
-      
+
+// Cookies Setup
+app.use(
+  session({
+    secret: process.env.SESS_SECRET,
+    cookie: { maxAge: 3600000 }, // 1 hour
+    resave: true,
+    saveUninitialized: true,
+    duration: 24 * 60 * 60 * 1000, // how long the session will stay valid in ms
+    activeDuration: 1000 * 60 * 5, // if expiresIn < activeDuration, the session will be extended by activeDuration milliseconds
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60, // 1 day
+    }),
+  }),
+);
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

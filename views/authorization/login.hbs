@@ -1,0 +1,24 @@
+<div id="login">
+  <h2>Login</h2>
+  <form action="/login" method="POST">
+  <div class="form-group">
+    <label for="input-email">Email</label>
+    <input  class="form-control" type="email" id="input-email" name="email" placeholder="Insert your email" />
+  </div>
+  <div class="form-group">
+    <label for="input-password">Password</label>
+    <input  class="form-control" type="password" name="password" id="input-password" placeholder="********" />
+  </div>
+
+    <button class="btn btn-primary" type="submit">Sign In</button>
+
+    {{!-- error message will be added here --}}
+    {{#if errorMessage}}
+    <p class="error-message">{{errorMessage}}</p>
+  {{/if}}
+  
+  <button type="submit">Login</button>
+  <a href="/reset">Forgot your password?</a>
+
+  </form>
+</div>
