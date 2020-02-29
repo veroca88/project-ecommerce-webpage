@@ -1,4 +1,4 @@
-<div id="login">
+{{!-- <div id="login">
   <h2>Login</h2>
   <form action="/login" method="POST">
   <div class="form-group">
@@ -21,4 +21,29 @@
   <a href="/reset">Forgot your password?</a>
 
   </form>
+</div> --}}
+
+<div class="body"></div>
+<div class="grad"></div>
+<div class="header">
+  <div>E<span>Commerce</span></div>
+</div>
+<br>
+<div class="login">
+  <form id="form" class="form" action="/login" method="POST">
+    {{!-- <label for="firstName">First name</label><br> --}}
+     <input required type="text" name="username" placeholder="Your username">
+     <input required type="password" name="password" placeholder="********">
+
+    {{#if errorMessage}}
+    <div class="error-message">{{ errorMessage }}</div>
+    {{/if}}
+    <button type="submit">LOGIN</button>
+    <br>
+    <a id="reset" href="/reset">Forgot your password?</a>
+  </form>
+
+  {{!-- 
+				<input type="text" placeholder="username" name="user"><br>
+				<input type="password" placeholder="password" name="password"><br> --}}
 </div>
