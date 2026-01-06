@@ -8,7 +8,7 @@
     "dev-windows": "nodemon ./bin/www"
   },
   "dependencies": {
-    "bcrypt": "^5.0.0",
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.3",
@@ -18,7 +18,7 @@
     "hbs": "^4.2.0",
     "mongoose": "^8.8.3",
     "morgan": "^1.9.0",
-    "node-sass-middleware": "^0.11.0",
+    "node-sass-middleware": "^1.1.0",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
